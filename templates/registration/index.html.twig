@@ -1,7 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RegistrationController!{% endblock %}
+{% block title %}Register you :){% endblock %}
 
 {% block body %}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.username, {
+            label: "Username"
+        }) }}
+        {{ form_row(registrationForm.password,{
+            type: "password",
+        }) }}
+    
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
     
 {% endblock %}
