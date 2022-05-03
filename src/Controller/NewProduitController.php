@@ -2,19 +2,22 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ProduitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NewProduitController extends AbstractController
 {
     /**
      * @Route("/new/produit", name="app_new_produit")
      */
-    public function index(): Response
+    public function form(): Response
     {
+        $form = $this->createForm(ProduitType::class);
+        // createForm() permet de récupérer le formulaire :)
         return $this->render('new_produit/index.html.twig', [
-            'controller_name' => 'NewProduitController',
+            'formArticle' => $form->createView(),
         ]);
     }
 }
