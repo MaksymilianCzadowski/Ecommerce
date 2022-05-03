@@ -27,7 +27,7 @@ class RegistrationController extends AbstractController
             $user->setPassword(
             $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
 
@@ -40,16 +40,6 @@ class RegistrationController extends AbstractController
 
         return $this->render('registration/index.html.twig', [
             'registrationForm' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/login", name="app_login")
-     */
-    public function login(): Response
-    {
-        return $this->render('registration/index.html.twig', [
-            'controller_name' => 'RegistrationController',
         ]);
     }
 }
