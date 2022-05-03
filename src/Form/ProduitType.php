@@ -39,7 +39,7 @@ class ProduitType extends AbstractType
                 ])
             ->add('categorie', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-select',
                     'placeholder' => 'Categorie',
                     ]
                 ])
