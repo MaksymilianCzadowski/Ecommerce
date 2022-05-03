@@ -19,6 +19,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $id;
 
+      /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $email;
+
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
@@ -29,11 +34,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $roles = [];
 
+    
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
