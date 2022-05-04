@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Produit;
+use App\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,11 +39,13 @@ class ProduitType extends AbstractType
                     'placeholder' => 'Lien image',
                     ]
                 ])
-            ->add('categorie', TextType::class, [
-                'attr' => [
-                    'class' => 'form-select',
-                    'placeholder' => 'Categorie',
-                    ]
+            ->add('categorie', Entity::class, [
+                'class' => Categorie::class,
+                // 'attr' => [
+                //     // 'class' => 'form-select',
+                //     'placeholder' => 'Categorie',
+                //     ]
+                
                 ])
             // ->add('user')
         ;

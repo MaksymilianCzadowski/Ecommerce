@@ -24,11 +24,11 @@ class NewProduitController extends AbstractController
         $form->handleRequest($request);
 
 
-        if($form->isSubmitted() && $form->isValid()){
-            $manager->persist($produit);
-            $manager->flush();
-            return $this->redirectToRoute('app_shop');
-        }
+        // if($form->isSubmitted() && $form->isValid()){
+        //     $manager->persist($produit);
+        //     $manager->flush();
+        //     return $this->redirectToRoute('app_shop');
+        // }
         return $this->render('new_produit/index.html.twig', [
             'formArticle' => $form->createView(),
         ]);
