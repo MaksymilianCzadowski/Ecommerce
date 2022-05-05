@@ -15,23 +15,28 @@ class NewProduitController extends AbstractController
     /**
      * @Route("/new/produit", name="app_new_produit")
      */
-    public function form(Request $request, EntityManagerInterface $manager): Response
+    public function form(Request $request, EntityManagerInterface $manager, Produit $produit = null): Response
     {
-        $produit = new Produit;
-        $form = $this->createForm(ProduitType::class);
-        // createForm() permet de récupérer le formulaire :)
-        dump($request);
+        
+        if(!$produit) {
+            $produit = new Produit;
+        }
 
+        $form = $this->createForm(ProduitType::class, $produit);
+        // createForm() permet de récupérer le formulaire :)
+        
         $form->handleRequest($request);
+        dump($request);
 
 
         if($form->isSubmitted() && $form->isValid()){
+            
             $manager->persist($produit);
             $manager->flush();
             return $this->redirectToRoute('app_shop');
         }
         return $this->render('new_produit/index.html.twig', [
-            'formArticle' => $form->createView(),
+            'formProduit' => $form->createView(),
         ]);
     }
 }

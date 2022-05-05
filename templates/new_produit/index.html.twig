@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    {{ form_start(formArticle) }}
+    {{ form_start(formProduit) }}
     
 
     <section class="vh-100" style="background-color: #eee;">
@@ -23,7 +23,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      {{form_widget(formArticle.nom, {
+                      {{form_widget(formProduit.nom, {
                         required: true
                       })}}
                     </div>
@@ -32,7 +32,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      {{form_widget(formArticle.description, {
+                      {{form_widget(formProduit.description, {
                         required: true
                       })}}
                     </div>
@@ -41,7 +41,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                     {{form_widget(formArticle.prix, {
+                     {{form_widget(formProduit.prix, {
                          type: 'number',
                          required: true
                      })}}
@@ -51,7 +51,7 @@
                    <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                     {{form_widget(formArticle.image, {
+                     {{form_widget(formProduit.image, {
                          required: true
                      })}}
                     </div>
@@ -60,7 +60,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                     {{form_widget(formArticle.categorie, {
+                     {{form_widget(formProduit.categorie, {
                          required: true
                      })}}
                      
@@ -77,5 +77,5 @@
 
 
 
-    {{ form_end(formArticle) }}
+    {{ form_end(formProduit) }}
 {% endblock %}
