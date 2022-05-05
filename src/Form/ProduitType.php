@@ -39,14 +39,15 @@ class ProduitType extends AbstractType
                     'placeholder' => 'Lien image',
                     ]
                 ])
-            ->add('categorie', Entity::class, [
-                'class' => Categorie::class,
-                // 'attr' => [
-                //     // 'class' => 'form-select',
-                //     'placeholder' => 'Categorie',
-                //     ]
+            ->add('categorie', EntityType::class, [
+                    'class' => Categorie::class,
+                    'choice_label' => 'titre',
+                    'attr' => [
+                    'class' => 'form-select',
+                    'placeholder' => 'Categorie',
+                    ]
                 
-                ])
+            ])
             // ->add('user')
         ;
     }
