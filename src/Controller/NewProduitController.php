@@ -9,17 +9,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Security;
 
 class NewProduitController extends AbstractController
 {
     /**
      * @Route("/new/produit", name="app_new_produit")
      */
-    public function form(Request $request, EntityManagerInterface $manager, Produit $produit = null): Response
+    public function form(Request $request, EntityManagerInterface $manager, Produit $produit = null, Security $security): Response
     {
-        
+
         if(!$produit) {
             $produit = new Produit;
+            $user = $this->getUser();
+            $produit->setUser($user);
         }
 
         $form = $this->createForm(ProduitType::class, $produit);
@@ -30,7 +33,7 @@ class NewProduitController extends AbstractController
 
 
         if($form->isSubmitted() && $form->isValid()){
-            
+            	
             $manager->persist($produit);
             $manager->flush();
             return $this->redirectToRoute('app_shop');

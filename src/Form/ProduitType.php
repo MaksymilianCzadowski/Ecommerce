@@ -20,6 +20,7 @@ class ProduitType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Nom Produit',
+                    'require' => 'true'
                     ]
                 ])
             ->add('description', TextType::class, [
