@@ -24,7 +24,7 @@ class NewProduitController extends AbstractController
             $user = $this->getUser();
             $produit->setUser($user);
         }
-
+        
         $form = $this->createForm(ProduitType::class, $produit);
         // createForm() permet de récupérer le formulaire :)
         
