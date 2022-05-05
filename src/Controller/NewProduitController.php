@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,23 +15,22 @@ class NewProduitController extends AbstractController
     /**
      * @Route("/new/produit", name="app_new_produit")
      */
-    public function form(Request $request): Response
+    public function form(Request $request, EntityManagerInterface $manager, Produit $produit): Response
     {
-        $produit = new Produit;
-        $form = $this->createForm(ProduitType::class);
+        $form = $this->createForm(ProduitType::class, $produit);
         // createForm() permet de récupérer le formulaire :)
         dump($request);
 
         $form->handleRequest($request);
 
 
-        // if($form->isSubmitted() && $form->isValid()){
-        //     $manager->persist($produit);
-        //     $manager->flush();
-        //     return $this->redirectToRoute('app_shop');
-        // }
+        if($form->isSubmitted() && $form->isValid()){
+            $manager->persist($produit);
+            $manager->flush();
+            return $this->redirectToRoute('app_shop');
+        }
         return $this->render('new_produit/index.html.twig', [
-            'formArticle' => $form->createView(),
+            'formProduit' => $form->createView(),
         ]);
     }
 }
