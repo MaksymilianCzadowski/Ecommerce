@@ -16,10 +16,13 @@ class ShopController extends AbstractController
     public function shop(ProduitRepository $repo): Response
     {
         $produits = $repo->findAll();
+        $user = $this->getUser()->getUserIdentifier();
         return $this->render('shop/index.html.twig', [
             'produits' => $produits,
+            'username' => $user
         ]);
     }
+    
 
     /**
      * @Route("/shop/detail/{id}", name="app_detail")
