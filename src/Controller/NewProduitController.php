@@ -36,7 +36,9 @@ class NewProduitController extends AbstractController
             	
             $manager->persist($produit);
             $manager->flush();
-            return $this->redirectToRoute('app_shop');
+            return $this->redirectToRoute('app_detail',[
+                'id' => $produit->getId(),
+            ]);
         }
         return $this->render('new_produit/index.html.twig', [
             'formProduit' => $form->createView(),
