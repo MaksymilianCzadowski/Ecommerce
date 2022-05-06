@@ -4,12 +4,15 @@
 
 {% block body %}
     <section class="row product">
+        {% for produit in produits %}
+            
         <article class="col-md-6 mx-auto text-center border border-dark mb-3 p-3 mt-3 mr-1" >
-            {# <div class="content">{{ produits.image }}</div> #}
-            <h4>{{ produits.nom }}</h4>
+            <div class="content"><img src="{{ produit.image }}"</div>
+            <h4>{{ produit.nom }}</h4>
             <div class="metadata">
-            {{  produits.prix}}
+            {{  produit.prix}}
             </div>
         </article>
+        {% endfor %}
     </section>
 {% endblock %}
