@@ -27,7 +27,7 @@ class ShopController extends AbstractController
     public function detail(Produit $produit){
         return $this->render('shop/details.html.twig',[
             'produit' => $produit
-        ])
+        ]);
     }
 
 }
