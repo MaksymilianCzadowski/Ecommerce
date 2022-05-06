@@ -22,6 +22,7 @@ class ShopController extends AbstractController
             'username' => $user
         ]);
     }
+    
 
     /**
      * @Route("/shop/detail/{id}", name="app_detail")
