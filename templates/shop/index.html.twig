@@ -17,8 +17,10 @@
                         </div>
 
                         <div class="d-flex flex-row">
-                            <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark" href="{{ path('app_detail', {'id': produit.id}) }}">
+                            <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">
+                            <a href="{{ path('app_detail', {'id': produit.id}) }}" style="color:inherit; text-decoration: none;">
                                 En savoir plus
+                                </a>
                             </button>
                             <button type="button" class="btn btn-success flex-fill ms-1">Ajouter au panier</button>
                         </div>
