@@ -21,4 +21,13 @@ class ShopController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/shop/detail/{id}", name="app_detail")
+     */
+    public function detail(Produit $produit){
+        return $this->render('shop/details.html.twig',[
+            'produit' => $produit
+        ])
+    }
+
 }
