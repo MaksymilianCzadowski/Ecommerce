@@ -16,7 +16,7 @@ class NewProduitController extends AbstractController
     /**
      * @Route("/new/produit", name="app_new_produit")
      */
-    public function form(Request $request, EntityManagerInterface $manager, Produit $produit = null, Security $security): Response
+    public function form(Request $request, EntityManagerInterface $manager, Produit $produit = null): Response
     {
 
         if(!$produit) {
