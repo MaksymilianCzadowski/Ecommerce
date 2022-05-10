@@ -34,7 +34,7 @@ class ShopController extends AbstractController
     public function detail(Produit $produit, EntityManagerInterface $entityManager, Request $request){
 
         $commentaire = new Commentaire();
-        $form = $this->createForm(CommentaireType::class);
+        $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())    // si on a fait une recherche
