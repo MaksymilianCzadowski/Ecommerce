@@ -50,19 +50,17 @@ class CommentaireRepository extends ServiceEntityRepository
     // /**
     //  * @return Commentaire[] Returns an array of Commentaire objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function getCommentaireByProduitId($value)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('c.produit_id = :val')
+            ->setParameter('val', "%$value%")
+            ->orderBy('c.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Commentaire
