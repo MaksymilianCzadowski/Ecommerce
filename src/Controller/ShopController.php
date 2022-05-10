@@ -8,6 +8,7 @@ use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\CommentaireRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,7 +31,7 @@ class ShopController extends AbstractController
     /**
      * @Route("/shop/detail/{id}", name="app_detail")
      */
-    public function detail(Produit $produit, EntityManagerInterface $entityManager, Request $request){
+    public function detail(Produit $produit, EntityManagerInterface $entityManager, Request $request, CommentaireRepository $repo){
 
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
@@ -47,11 +48,11 @@ class ShopController extends AbstractController
             
             return $this->redirect($request->getUri());
         }
-
+        $commentaires = $repo->findAll();
         return $this->render('shop/details.html.twig',[
             'produit' => $produit,
             'commentaireForm' => $form->createView(),
-            'commentaire' => $commentaire
+            'commentaires' => $commentaires
         ]);
     }
 

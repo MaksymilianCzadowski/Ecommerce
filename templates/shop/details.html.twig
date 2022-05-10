@@ -59,30 +59,29 @@
     {{form_end(commentaireForm)}}
   </div>
   {{form_end(commentaireForm)}}
+  <h3 class="d-flex justify-content-center">Commentaires</h3>
   <div class="container my-5 py-5">
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10">
         <div class="card text-dark">
-          <div class="card-body p-4">
-            <h4 class="mb-0">Recent comments</h4>
-            <p class="fw-light mb-4 pb-2">Latest Comments section by users</p>
-
+         {% for commentaire in commentaires %}
+         <div class="card-body p-4">
             <div class="d-flex flex-start">
               <div>
-                <h6 class="fw-bold mb-1">username</h6>
+                <h6 class="fw-bold mb-1">{{commentaire.user.username}}</h6>
                 <div class="d-flex align-items-center mb-3">
                   <p class="mb-0">
-                   createdAt
+                   {{commentaire.createdAt | date('d/m/Y à H:i:s')}}
                   </p>
                 </div>
                 <p class="mb-0">
-                  contenu
+                  {{commentaire.contenu}}
                 </p>
               </div>
             </div>
           </div>
-
           <hr class="my-0" />
+{% endfor %}
 
           </section>
 
