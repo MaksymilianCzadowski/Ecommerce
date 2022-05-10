@@ -48,7 +48,7 @@ class ShopController extends AbstractController
             
             return $this->redirect($request->getUri());
         }
-        $commentaires = $repo->getCommentaireByProduitId($produit->getId());
+        $commentaires = $repo->getCommentaireByProduitId($produit);
         return $this->render('shop/details.html.twig',[
             'produit' => $produit,
             'commentaireForm' => $form->createView(),

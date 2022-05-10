@@ -53,8 +53,8 @@ class CommentaireRepository extends ServiceEntityRepository
     public function getCommentaireByProduitId($value)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.produit_id = :val')
-            ->setParameter('val', "%$value%")
+            ->andWhere('c.produit = :val')
+            ->setParameter('val', $value)
             ->orderBy('c.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
