@@ -32,6 +32,7 @@
     </div>
 </div>
 </div>
+{{form_start(commentaireForm)}}
 <section style="background-color: #f0f0f0;">
    {{form_start(commentaireForm)}}
   <div class="container my-5 py-5 text-dark">
@@ -43,8 +44,7 @@
               <div class="w-100">
                 <h5>Ajouter un commentaire</h5>
                 <div class="form-outline">
-                  {{ form_row(commentaireForm.contenu) }}
-                  {# <textarea class="form-control" id="textAreaExample" rows="4"></textarea> #}
+                   {{form_row(commentaireForm.contenu)}}
                 </div>
                 <div class="d-flex justify-content-end mt-3">
                   <button type="submit" class="btn btn-primary">Send<i class="fas fa-long-arrow-alt-right ms-1"></i>
@@ -58,6 +58,7 @@
     </div>
     {{form_end(commentaireForm)}}
   </div>
+  {{form_end(commentaireForm)}}
   <div class="container my-5 py-5">
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10">

@@ -30,35 +30,29 @@ class ShopController extends AbstractController
     /**
      * @Route("/shop/detail/{id}", name="app_detail")
      */
-    public function detail(Produit $produit, Request $request, EntityManagerInterface $entityManager) : Response
-    {
+    public function detail(Produit $produit, EntityManagerInterface $entityManager, Request $request){
 
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
-        $entityManager = EntityManagerInterface;
-        
 
         if($form->isSubmitted() && $form->isValid())    // si on a fait une recherche
         {
-            $commentaire = $form->get('contenu')->getData();
             $commentaire->setCreatedAt(new DateTime());
             $commentaire->setUser($this->getUser());
-            $commentaire->setProduit($this->getProduit());
+            $commentaire->setProduit($produit);
 
-            $entityManager->persist($user);
+            $entityManager->persist($commentaire);
             $entityManager->flush();
-        }else{
-            return $this->render('shop/details.html.twig',[
-                'produit' => $produit,
-                'commentaireForm' => $form->createView(),
-            ]);
+            
+            return $this->redirect($request->getUri());
         }
 
-        
         return $this->render('shop/details.html.twig',[
-            'produit' => $produit, Request,
+            'produit' => $produit,
             'commentaireForm' => $form->createView(),
+            'commentaire' => $commentaire
         ]);
     }
+
 }
