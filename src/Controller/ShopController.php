@@ -5,11 +5,13 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Produit;
 use App\Entity\Commentaire;
+use App\Form\CommentaireType;
 use App\Repository\ProduitRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Type;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ShopController extends AbstractController
@@ -29,38 +31,28 @@ class ShopController extends AbstractController
     /**
      * @Route("/shop/detail/{id}", name="app_detail")
      */
-    public function detail(Produit $produit){
-        return $this->render('shop/details.html.twig',[
-            'produit' => $produit
-        ]);
-    }
+    public function detail(Produit $produit, EntityManagerInterface $entityManager, Request $request){
 
-     /**
-     * @Route("/shop/detail/{id}", name="app_detail")
-     */
-    public function commentaire(Request $request, Commentaire $commentaire): Response{
-        
-        $form = $this->createForm(commentaireType::class);
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class);
         $form->handleRequest($request);
-
-        
 
         if($form->isSubmitted() && $form->isValid())    // si on a fait une recherche
         {
-            $commentaire = $form->get('contenu')->getData();
             $commentaire->setCreatedAt(new DateTime());
             $commentaire->setUser($this->getUser());
-            $commentaire->setProduit($this->getProduit());
-        }else{
-            return $this->render('shop/details.html.twig');
+
+            $entityManager->persist($commentaire);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('app_details');
         }
 
-        $entityManager->persist($user);
-        $entityManager->flush();
-        
-        
         return $this->render('shop/details.html.twig',[
-    
+            'produit' => $produit,
+            'commentaireForm' => $form->createView(),
+            'commentaire' => $commentaire
         ]);
     }
+
 }
