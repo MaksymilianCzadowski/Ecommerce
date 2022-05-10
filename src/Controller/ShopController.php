@@ -11,7 +11,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ShopController extends AbstractController
@@ -41,11 +40,12 @@ class ShopController extends AbstractController
         {
             $commentaire->setCreatedAt(new DateTime());
             $commentaire->setUser($this->getUser());
+            $commentaire->setProduit($produit);
 
             $entityManager->persist($commentaire);
             $entityManager->flush();
             
-            return $this->redirectToRoute('app_details');
+            return $this->redirect($request->getUri());
         }
 
         return $this->render('shop/details.html.twig',[
