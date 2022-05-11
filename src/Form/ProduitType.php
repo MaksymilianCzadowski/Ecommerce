@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
@@ -35,10 +36,11 @@ class ProduitType extends AbstractType
                     'placeholder' => 'Prix',
                     ]
                 ])
-            ->add('image', TextType::class, [
+            ->add('imageFile', FileType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Lien image',
+                    'required' =>false,
                     ]
                 ])
             ->add('categorie', EntityType::class, [
