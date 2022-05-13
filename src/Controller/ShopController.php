@@ -124,4 +124,21 @@ class ShopController extends AbstractController
         return $this->redirectToRoute('app_cart');
     }
 
+     /**
+     * @Route("/cart/confirmOrder", name="cart_confirm")
+     */
+    public function confirmOrder(RequestStack $rs)
+    {
+        $session = $rs->getSession();
+        $session->remove('cart');
+
+        return $this->render('shop/confirmCart.html.twig', [
+            
+        ]);
+
+
+    }
+
+    
+
 }
