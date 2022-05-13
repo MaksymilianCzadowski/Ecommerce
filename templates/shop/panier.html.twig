@@ -38,10 +38,10 @@
             <tr>
                 <td colspan="3" class="text-end">Total :</td>
                 <td>{{ total }}€</td>
+                 <td colspan="4"><a href="{{ path('cart_confirm' )}}" class="btn btn-primary btn-rounded float-right">Payer</a></td>
             </tr>
         </tfoot>
     </table>
-                <a href="{{ path('cart_confirm' )}}" class="btn btn-primary btn-rounded float-right">Payer</a>
 {% else %}
     <p class="text-center">Votre panier est vide</p>
 {% endif %}
