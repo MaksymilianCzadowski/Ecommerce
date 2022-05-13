@@ -20,7 +20,8 @@
                             <a class="btn btn-primary flex-fill me-1" href="{{ path('app_detail', {'id': produit.id}) }}">
                                 En savoir plus
                                 </a>
-                            <button type="button" class="btn btn-success flex-fill ms-1">Ajouter au panier</button>
+                            <a href="{{ path('cart_add', {id: produit.id}) }}" class="btn btn-success flex-fill ms-1">Ajouter au panier</a>
+                            {# <button type="button" class="btn btn-success flex-fill ms-1">Ajouter au panier</button> #}
                         </div>
                     </div>
                 </div>
