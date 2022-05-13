@@ -134,6 +134,7 @@ class ShopController extends AbstractController
 
         return $this->render('shop/confirmCart.html.twig', [
             
+            
         ]);
 
 
