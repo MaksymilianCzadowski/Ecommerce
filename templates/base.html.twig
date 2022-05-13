@@ -41,6 +41,10 @@
 						<a class="nav-link active" aria-current="page" href="{{ path('app_shop') }}">Accueil</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_new_produit') }}">Ajouter un
+							produit</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="{{ path('app_cart') }}">Panier
 							{% set nbProduits = app.session.get('qt') %}
 
@@ -49,10 +53,6 @@
 								class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-success">{{ nbProduits }}</span>
 							{% endif %}
 						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="{{ path('app_new_produit') }}">Ajouter un
-							produit</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="#">Contactez-nous!</a>
