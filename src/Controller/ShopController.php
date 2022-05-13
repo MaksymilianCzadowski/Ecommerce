@@ -5,6 +5,7 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Produit;
 use App\Entity\Commentaire;
+use App\Form\RechercheType;
 use App\Service\CartService;
 use App\Form\CommentaireType;
 use App\Repository\ProduitRepository;
@@ -21,11 +22,22 @@ class ShopController extends AbstractController
     /**
      * @Route("/shop", name="app_shop")
      */
-    public function shop(ProduitRepository $repo): Response
+    public function shop(ProduitRepository $repo, Request $request): Response
     {
+
+        $form = $this->createForm(RechercheType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())    // si on a fait une recherche
+        {
+            $data = $form->get('recherche')->getData();
+            $produits = $repo->getProduitsByName($data);
+        }else {
         $produits = $repo->findAll();
+        }
         return $this->render('shop/index.html.twig', [
             'produits' => $produits,
+            'formRecherche' => $form->createView()
         ]);
     }
 

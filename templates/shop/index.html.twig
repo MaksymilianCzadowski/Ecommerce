@@ -3,10 +3,18 @@
 {% block title %}Shop{% endblock %}
 
 {% block body %}
-<div class="text-center">
-<br>
-<h2>Produits à vendre</h2>
-</div>
+{{ form_start(formRecherche) }}
+
+		{{ form_widget(formRecherche.recherche, {
+			attr: {
+				placeholder: "Rechercher un article"
+                
+			}
+		}) }}
+
+		<button type="submit" class="btn btn-primary mt-2">Rechercher</button>
+
+	{{ form_end(formRecherche) }}
 
 <section>
     <div class="container py-5">
